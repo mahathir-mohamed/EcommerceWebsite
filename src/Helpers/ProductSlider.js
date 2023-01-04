@@ -18,25 +18,30 @@ export default function ProductSlider(props) {
             "title":"Baby Wear" ,
             "price":"₹120",
             "offer":"25%",
-            "img":"/baby Cloth.jpeg"
+            "img":"/baby Cloth.jpeg",
+            "objectId":"/SingleProduct"
         },{
            "title":"Cooling Glass" ,
            "price":"₹20",
-           "img":"/glass.png"
+           "img":"/glass.png",
+           "objectId":"/SingleProduct"
         },{
            "title":"Pack Bag" ,
            "price":"₹50",
            "offer":"30%",
-           "img":"/bag.png"
+           "img":"/bag.png",
+           "objectId":"/SingleProduct"
         },{
           "title":"Wrist Watch" ,
            "price":"₹200",
            "offer":"10%",
-           "img":"/watch.png"
+           "img":"/watch.png",
+           "objectId":"/SingleProduct"
         },{
           "title":"Tooth Brush" ,
           "price":"₹10",
-          "img":"/brush.png"  
+          "img":"/brush.png",
+          "objectId":"/SingleProduct" 
         }
     ])
   return (
@@ -52,7 +57,7 @@ export default function ProductSlider(props) {
         >
             {Products.map((data,index)=>(
             <SwiperSlide key={index} style={{height:250,width:280}}>
-                <ProductCard title={data.title} price={data.price} offer={data.offer} img={data.img}/>
+                <ProductCard title={data.title} price={data.price} offer={data.offer} img={data.img} id={data.objectId} />
             </SwiperSlide>
             ))}
         </Swiper>

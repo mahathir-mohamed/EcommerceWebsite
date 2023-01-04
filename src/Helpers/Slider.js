@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Container from 'react-bootstrap/container';
 
-export default function Banner() {
+export default function Banner(props) {
   const {innerWidth:width,innerHeight:height}=window;
   var settings = {
     dots: true,
@@ -13,21 +13,17 @@ export default function Banner() {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+  const responsive = width>=800?Desk.Banner:Mobile.Banner;
   return (
     <Container>
     <Slider {...settings}>
-      <div style="height:300px;width:300px">
-        <a href="/"><img alt="slide image" src={process.env.PUBLIC_URL+"/slide1.jpg"} style={width<=800?Mobile.Banner:Desk.Banner}/></a>
+      {props.data.map((item,index)=>{
+        return(
+        <div key={index} >
+        <a href="/SingleProduct"><img alt="slide image" src={process.env.PUBLIC_URL + item.img} style={props.design?Desk.Banner:responsive}/></a>
       </div>
-       <div style="height:300px;width:300px">
-        <a href="/"><img alt="slide image" src={process.env.PUBLIC_URL+"/slide2.jpg"} style={width<=800?Mobile.Banner:Desk.Banner}/></a>
-      </div>
-       <div style="height:300px;width:300px">
-        <a href="/"><img alt="slide image" src={process.env.PUBLIC_URL+"/slide3.jpg"} style={width<=800?Mobile.Banner:Desk.Banner}/></a>
-      </div>
-      <div style="height:300px;width:300px">
-        <a href="/"><img alt="slide image" src={process.env.PUBLIC_URL+"/slide2.jpg"} style={width<=800?Mobile.Banner:Desk.Banner}/></a>
-      </div>
+      ) 
+      })}
     </Slider>
     </Container>
   );

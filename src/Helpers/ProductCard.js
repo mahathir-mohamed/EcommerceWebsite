@@ -6,7 +6,7 @@ import { AiFillStar,AiFillTag,AiOutlineShoppingCart } from "react-icons/ai";
 export default function ProductCard(props) {
   const [CartItem,setCardItem]=useState(0);
   return (
-    <Link to="/cat" style={{textDecoration:"none"}}>
+    <Link to={props.id} style={{textDecoration:"none"}}>
     <Card className="p-0 overflow-hidden h-100 shadow" >
       <div className="overflow-hidden  p-0 bg-light" style={{height:230,width:"100%",alignSelf:"center"}}>
          <Card.Img variant="top" style={{width:"100%",height:100,zIndex:1}} src={process.env.PUBLIC_URL + props.img}/>

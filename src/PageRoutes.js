@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import AllProducts from './Pages/AllProducts';
+import SingleProduct from './Pages/SingleProduct';
 
 export default function PageRoutes() {
   return (
@@ -13,6 +14,7 @@ export default function PageRoutes() {
             <Route path="/SignUp" element={<SignUp/>}/>
             <Route path="/Login" element={<Login/>} />
             <Route path="/AllProducts" element={<AllProducts/>} />
+            <Route path="/SingleProduct" element={<SingleProduct/>}/>
          </Routes>
     </BrowserRouter>
   )
