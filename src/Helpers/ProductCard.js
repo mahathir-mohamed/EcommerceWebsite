@@ -9,7 +9,7 @@ export default function ProductCard(props) {
     <Link to="/cat" style={{textDecoration:"none"}}>
     <Card className="p-0 overflow-hidden h-100 shadow" >
       <div className="overflow-hidden  p-0 bg-light" style={{height:230,width:"100%",alignSelf:"center"}}>
-         <Card.Img variant="top" style={{width:"100%",height:100}} src={process.env.PUBLIC_URL + props.img}/>
+         <Card.Img variant="top" style={{width:"100%",height:100,zIndex:1}} src={process.env.PUBLIC_URL + props.img}/>
       </div>
       <Card.Body className="d-flex flex-column">
         <div className="d-flex justify-content-between">

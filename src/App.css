@@ -50,10 +50,9 @@
   transition: 1s;
   transform: scale(1.08);
 }
-
 .offer{
   height: 30px;
-  width: 30px;
+  width: 28px;
   border-bottom-left-radius:35%;
   border-bottom-right-radius:35%;
   border: 1px solid black;
@@ -61,4 +60,24 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+.badge{
+  z-index:2;
+  border: 1px solid black;
+  height: 100;
+  width: 100
+}
+.AllProductCard{
+  height:130px;
+  width:"100%";
+  /* border:1px solid black; */
+  border-radius:10px;
+  background-color:#e6e6e6;
+}
+.Alloffer{
+  height:30px;
+  width:60px;
+  border-radius: 150px 0 150px 0;
+  background-color: red;
+
 }

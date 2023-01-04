@@ -36,15 +36,14 @@ export default function ProductSlider(props) {
         },{
           "title":"Tooth Brush" ,
           "price":"₹10",
-          "img":"/brush.png"
-          
+          "img":"/brush.png"  
         }
     ])
   return (
-       <div style={{backgroundColor:""}} className="container py-4 px-2 justify-content-center">
+       <div className="container py-4 px-2 justify-content-center">
         <Container className="d-flex justify-content-between">
             <div><h1 style={width<=600?mobileEdition.TitleBar:DeskEdition.TitleBar}>{props.title}</h1></div>
-            <div><Link to="/SignUp"><h1 style={{color:"blue",fontSize:15}}>See More</h1></Link>
+            <div><Link to="/AllProducts"><h1 style={{color:"blue",fontSize:15}}>See More</h1></Link>
             </div>
         </Container>
         <Swiper freeMode={true} grabCursor={true} spaceBetween={30} modules={[FreeMode]} className="mySwiper" slidesPerView={5} onSlideChange={()=>{console.log(Index)}}
