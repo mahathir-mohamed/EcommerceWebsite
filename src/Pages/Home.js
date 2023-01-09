@@ -22,6 +22,8 @@ export default function Home() {
         <ProductSlider title="Baby Accessories"/>
         <ProductSlider title="Gift Products"/>
         <ProductSlider title="Baby Toys"/>
+        <ProductSlider title="Soft Toys"/>
+        <ProductSlider title="Indoor Decoration"/>
         </div>
          </Container>
     </div>

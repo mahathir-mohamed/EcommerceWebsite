@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <Container className="bg-dark d-flex align-items-center justify-content-center" style={{height:100}}>
         <Row className="d-flex flex-row">
-            <Col className="sm-12"><p style={{color:"white"}}>All Rights Reservd By  @ArhamBabyWorld</p></Col>
+            <Col className="sm-12"><p style={{color:"white",fontSize:12}}>All Rights Reserved By  @ArhamBabyWorld</p></Col>
             <Col className="d-flex flex-row justify-content-sm-center"><p style={{color:"white"}}>follow us on</p>
             <div>
             <a href="/Home" ><AiFillFacebook size={25} color="blue"/></a>

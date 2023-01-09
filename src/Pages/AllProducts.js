@@ -37,6 +37,22 @@ export default function AllProducts() {
           "img":"/brush.png",
           "description":"very soft brushes for babie",
           "objectId":"/SingleProduct"
+        },
+        {
+          "title":"Wrist Watch" ,
+           "price":"₹200",
+           "offer":"10%",
+           "img":"/watch.png",
+           "description":"Affortable and beautiful looking watches",
+           "objectId":"/SingleProduct"
+        },
+        {
+            "title":"Baby Wear",
+            "price":"₹120",
+            "offer":"25%",
+            "img":"/baby Cloth.jpeg",
+            "description":"Good and soft product for babies",
+            "objectId":"/SingleProduct"
         }
     ]
   return (

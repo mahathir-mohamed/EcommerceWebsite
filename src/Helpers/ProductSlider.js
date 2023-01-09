@@ -42,6 +42,18 @@ export default function ProductSlider(props) {
           "price":"₹10",
           "img":"/brush.png",
           "objectId":"/SingleProduct" 
+        },
+        {
+          "title":"Tooth Brush" ,
+          "price":"₹10",
+          "img":"/brush.png",
+          "objectId":"/SingleProduct" 
+        },
+        {
+          "title":"Tooth Brush" ,
+          "price":"₹10",
+          "img":"/brush.png",
+          "objectId":"/SingleProduct" 
         }
     ])
   return (
@@ -55,7 +67,7 @@ export default function ProductSlider(props) {
         onSwiper={(swiper)=>{setIndex(Index+1)}}
         breakpoints={breakpointValues}
         >
-            {Products.map((data,index)=>(
+            {Products.slice(0,5).map((data,index)=>(
             <SwiperSlide key={index} style={{height:250,width:280}}>
                 <ProductCard title={data.title} price={data.price} offer={data.offer} img={data.img} id={data.objectId} />
             </SwiperSlide>
