@@ -58,6 +58,8 @@ export default function ProductSlider(props) {
     ])
   return (
        <div className="container py-4 px-2 justify-content-center">
+        {props.Products?
+        <div>
         <Container className="d-flex justify-content-between">
             <div><h1 style={width<=600?mobileEdition.TitleBar:DeskEdition.TitleBar}>{props.title}</h1></div>
             <div><Link to="/AllProducts"><h1 style={{color:"blue",fontSize:15}}>See More</h1></Link>
@@ -67,12 +69,13 @@ export default function ProductSlider(props) {
         onSwiper={(swiper)=>{setIndex(Index+1)}}
         breakpoints={breakpointValues}
         >
-            {Products.slice(0,5).map((data,index)=>(
+            {props.Products.slice(0,5).map((data,index)=>(
             <SwiperSlide key={index} style={{height:250,width:280}}>
-                <ProductCard title={data.title} price={data.price} offer={data.offer} img={data.img} id={data.objectId} />
+                <ProductCard title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} id={data._id} />
             </SwiperSlide>
             ))}
-        </Swiper>
+        </Swiper></div>:null}
+        
         </div>
   )
 }

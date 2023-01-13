@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Container from 'react-bootstrap/container';
+import Image from 'react-bootstrap/Image';
 
 export default function Banner(props) {
   const {innerWidth:width,innerHeight:height}=window;
@@ -22,10 +23,11 @@ export default function Banner(props) {
       {props.data.map((item,index)=>{
         return(
         <div key={index} >
-        <a href="/SingleProduct"><img alt="slide image" src={process.env.PUBLIC_URL + item.img} style={props.design?Desk.Banner:responsive}/></a>
+        <a href="/SingleProduct"><Image alt="slide image" src={item.url} style={props.design?Desk.Banner:responsive}/></a>
       </div>
       ) 
       })}
+
     </Slider>
     </Container>
   );

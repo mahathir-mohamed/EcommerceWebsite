@@ -3,8 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useCookies } from 'react-cookie';
+
 
 export default function Header() {
+  const [cookies, setCookie,removeCookie] = useCookies(['Token']);
+  function LogOut(){
+     removeCookie('Token')
+  }
   const {innerHeight:height,innerWidth:width} = window;
   return (
     <Container>
@@ -20,7 +26,8 @@ export default function Header() {
           <Nav className="me-auto px-sm-5">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/SignUp">SignUp</Nav.Link>
-            <Nav.Link href="Login">Login</Nav.Link>
+            <Nav.Link href="/UpdateCustomer">Edit user</Nav.Link>
+            <Nav.Link onClick={()=>{LogOut()}} className="btn btn-danger p-2 text-light">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </div>

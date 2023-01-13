@@ -7,9 +7,10 @@ import {AiFillFacebook,AiFillInstagram} from 'react-icons/ai';
 
 export default function Footer() {
   return (
-    <Container className="bg-dark d-flex align-items-center justify-content-center" style={{height:100}}>
+    <Container>
+      <div className="bg-dark d-flex align-items-center justify-content-center" style={{height:100}}>
         <Row className="d-flex flex-row">
-            <Col className="sm-12"><p style={{color:"white",fontSize:12}}>All Rights Reserved By  @ArhamBabyWorld</p></Col>
+            <Col><p style={{color:"white",marginLeft:10,fontSize:15,textAlign:"center"}}>All Rights Reserved By  @ArhamBabyWorld</p></Col>
             <Col className="d-flex flex-row justify-content-sm-center"><p style={{color:"white"}}>follow us on</p>
             <div>
             <a href="/Home" ><AiFillFacebook size={25} color="blue"/></a>
@@ -17,6 +18,7 @@ export default function Footer() {
             </div>
             </Col>
         </Row>
+        </div>
     </Container>
   )
 }

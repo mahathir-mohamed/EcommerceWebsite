@@ -19,7 +19,7 @@ export default function BannerSlider(){
         <FaArrowAltCircleRight className="arrow-right" onClick={()=>{nextSlide()}}/>
         {images.map((slide,index)=>{
              return <div key={index} className={index===current?'slideactive':'slideinactive'} on>
-                {current===index && <a href="/"><img alt="slide image" src={slide.image} className="slide"/>
+                {current===index && <a href="/"><img alt="slide image" src={slide.image.url} className="slide"/>
                 </a>}
                 </div> 
         })}
