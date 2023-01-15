@@ -6,26 +6,44 @@ import Greeting from '../Helpers/Greeting';
 import Container from 'react-bootstrap/container';
 import axios from 'axios';
 import {baseUrl1,baseUrl2} from '../Api/ApiRoutes';
+// import {useSelector} from 'react-redux';
 
 export default function Home() {
+  // const {MobileNo,Password} = useSelector(state => state.userReducer);
    const [Products,setProducts]=useState([]);
+   const [BabyAccessory,setAccessory]=useState([]);
+   const [GiftProducts,setGiftProducts]=useState([]);
+   const [BabyToys,setBabyToys]=useState([]);
+   const [SoftToys,setSoftToys]=useState([]);
+   const [IndoorDecorations,setIndoorDecoration]=useState([]);
    const [Banner,setBanner]=useState([]);
    const [image,setimage]=useState([]);
   useEffect(()=>{
-    axios.get(`http://${baseUrl2}:3000/Products/AllProducts`).then((res)=>{setProducts(res.data)}).catch((e)=>console.log(e));
+    // console.log(MobileNo);
+    axios.get(`${baseUrl2}/Products/AllProducts`).then((res)=>{
+      setProducts(res.data);
+      // if(res.data[0].Category=="Baby Accessories"){
+      //   console.log(res.data[0].Category)
+      // }
+      // console.log(Products)
+    }).catch((e)=>console.log(e));
 
-    axios.get(`http://${baseUrl2}:3000/Products/AllBanner`).then((res)=>{setBanner(res.data)}).catch((e)=>console.log(e));
+    axios.get(`${baseUrl2}/Products/AllBanner`).then((res)=>{setBanner(res.data)}).catch((e)=>console.log(e));
 
     // console.log(Banner)
     // let newImage=[];
     
-      IterateImages()
+      // IterateImages()
     
     
     // setimage(NewImage);
     // console.log(image)
 
   },[])
+
+  useEffect(()=>{
+      ProductSeperator()
+  },[Products])
   const data = [
     {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536347/Images/xsnpxa4nsuqxo0j5umxe.jpg"},
     {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"},
@@ -37,70 +55,48 @@ export default function Home() {
  function IterateImages(){
       for(let i=0;i<Banner.length;i++){
         setimage(old => [...old,Banner[i].Image[0]]);
-        console.log(image);
+        // console.log(image);
     }
     
     // return image
  }
-  // const [Products,setProducts]=useState([
-  //       {
-  //           "title":"Baby Wear" ,
-  //           "price":"₹120",
-  //           "offer":"25%",
-  //           "img":"/baby Cloth.jpeg",
-  //           "objectId":"/SingleProduct"
-  //       },{
-  //          "title":"Cooling Glass" ,
-  //          "price":"₹20",
-  //          "img":"/glass.png",
-  //          "objectId":"/SingleProduct"
-  //       },{
-  //          "title":"Pack Bag" ,
-  //          "price":"₹50",
-  //          "offer":"30%",
-  //          "img":"/bag.png",
-  //          "objectId":"/SingleProduct"
-  //       },{
-  //         "title":"Wrist Watch" ,
-  //          "price":"₹200",
-  //          "offer":"10%",
-  //          "img":"/watch.png",
-  //          "objectId":"/SingleProduct"
-  //       },{
-  //         "title":"Tooth Brush" ,
-  //         "price":"₹10",
-  //         "img":"/brush.png",
-  //         "objectId":"/SingleProduct" 
-  //       },
-  //       {
-  //         "title":"Tooth Brush" ,
-  //         "price":"₹10",
-  //         "img":"/brush.png",
-  //         "objectId":"/SingleProduct" 
-  //       },
-  //       {
-  //         "title":"Tooth Brush" ,
-  //         "price":"₹10",
-  //         "img":"/brush.png",
-  //         "objectId":"/SingleProduct" 
-  //       }
-  //   ])
+ function ProductSeperator(){
+   var Accesories = Products.filter(function(data){
+    return data.Category == "Baby Accessories";
+   })
+   setAccessory(Accesories);
+   var SoftToys = Products.filter(function(data){
+    return data.Category == "Soft Toys";
+   })
+   setSoftToys(SoftToys);
+    var decor = Products.filter(function(data){
+    return data.Category == "Indoor Decoration";
+   })
+   setIndoorDecoration(decor)
+    var babyToys = Products.filter(function(data){
+    return data.Category == "Baby Toys";
+   })
+   setSoftToys(babyToys);
+    var Gift = Products.filter(function(data){
+    return data.Category == "Gift Products";
+   })
+   setGiftProducts(Gift);
+ }
   return (
     <div>
          {/* <Greeting/> */}
          
-         {/* <Banner/> */}
+         {/* <Banner data={data[0].url}/> */}
         
          {/* <BannerSlider/> */}
          <Container>
-          {Products?
         <div style={{backgroundColor:'#d9d9d9'}}>
-        <ProductSlider title="Baby Accessories" Products={Products}/>
-        <ProductSlider title="Gift Products" Products={Products}/>
-        <ProductSlider title="Baby Toys" Products={Products}/>
-        <ProductSlider title="Soft Toys" Products={Products}/>
-        <ProductSlider title="Indoor Decoration" Products={Products}/>
-        </div>:null}
+        <ProductSlider title="Baby Accessories" Products={BabyAccessory}/>
+        <ProductSlider title="Gift Products" Products={GiftProducts}/>
+        <ProductSlider title="Baby Toys" Products={BabyToys}/>
+        <ProductSlider title="Soft Toys" Products={SoftToys}/>
+        <ProductSlider title="Indoor Decoration" Products={IndoorDecorations}/>
+        </div>
          </Container>
     </div>
   )

@@ -17,7 +17,7 @@ export default function SingleProduct() {
   const [Product,setProduct]=useState({});
   const [data,setdata]=useState([]);
   useEffect(()=>{
-    axios.get(`http://${baseUrl2}:3000/Products/ProductDetails/${id}`).then(
+    axios.get(`${baseUrl2}/Products/ProductDetails/${id}`).then(
       (response)=>{
         setProduct(response.data);
         setdata(response.data.Image);

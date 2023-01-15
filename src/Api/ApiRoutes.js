@@ -1,2 +1,2 @@
-export const baseUrl2 = '192.168.1.12'
-export const baseUrl1 = '192.168.43.99'
+export const baseUrl2 = 'http://192.168.1.12:8000'
+export const baseUrl1 = 'http://192.168.43.99:8000'

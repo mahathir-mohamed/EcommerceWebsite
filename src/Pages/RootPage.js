@@ -1,4 +1,4 @@
-import PageRoutes from '../PageRoutes';
+import PageRoutes from '.././Routes/PageRoutes';
 import Header from '../HeaderAndFooter/Header';
 import Footer from '../HeaderAndFooter/Footer';
 

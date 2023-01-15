@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Swiper,SwiperSlide } from 'swiper/react';
 import{FreeMode} from 'swiper';
 import 'swiper/css';
@@ -6,63 +6,28 @@ import "swiper/css/free-mode";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductCard from './ProductCard';
 import Container from 'react-bootstrap/Container';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 
 export default function ProductSlider(props) {
+  useEffect(()=>{
+   setProduct(props.Products);
+  //  setCat(Product[0].Category);
+  //  console.log(Cat)  
+  },[])
+    const [Product,setProduct]=useState([]);
+    const [Cat,setCat]=useState()
+    const navigate = useNavigate();
     const {innerWidth:width,innerHeight:height}=window;
     const [Index,setIndex]=useState(0);
-    const [Products,setProducts]=useState([
-        {
-            "title":"Baby Wear" ,
-            "price":"₹120",
-            "offer":"25%",
-            "img":"/baby Cloth.jpeg",
-            "objectId":"/SingleProduct"
-        },{
-           "title":"Cooling Glass" ,
-           "price":"₹20",
-           "img":"/glass.png",
-           "objectId":"/SingleProduct"
-        },{
-           "title":"Pack Bag" ,
-           "price":"₹50",
-           "offer":"30%",
-           "img":"/bag.png",
-           "objectId":"/SingleProduct"
-        },{
-          "title":"Wrist Watch" ,
-           "price":"₹200",
-           "offer":"10%",
-           "img":"/watch.png",
-           "objectId":"/SingleProduct"
-        },{
-          "title":"Tooth Brush" ,
-          "price":"₹10",
-          "img":"/brush.png",
-          "objectId":"/SingleProduct" 
-        },
-        {
-          "title":"Tooth Brush" ,
-          "price":"₹10",
-          "img":"/brush.png",
-          "objectId":"/SingleProduct" 
-        },
-        {
-          "title":"Tooth Brush" ,
-          "price":"₹10",
-          "img":"/brush.png",
-          "objectId":"/SingleProduct" 
-        }
-    ])
   return (
        <div className="container py-4 px-2 justify-content-center">
         {props.Products?
         <div>
         <Container className="d-flex justify-content-between">
             <div><h1 style={width<=600?mobileEdition.TitleBar:DeskEdition.TitleBar}>{props.title}</h1></div>
-            <div><Link to="/AllProducts"><h1 style={{color:"blue",fontSize:15}}>See More</h1></Link>
+            <div><a href="/AllProducts" style={{textDecoration:"none"}}>See More</a>
             </div>
         </Container>
         <Swiper freeMode={true} grabCursor={true} spaceBetween={30} modules={[FreeMode]} className="mySwiper" slidesPerView={5} onSlideChange={()=>{console.log(Index)}}

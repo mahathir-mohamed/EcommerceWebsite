@@ -46,7 +46,7 @@ useEffect(()=>{
     setUserId(JSON.parse(localStorage.getItem('userId')))
     console.log(UserId);
     // console.log(UserId);
-    axios.get(`http://${baseUrl2}:3000/users/CustomerDetail/${JSON.parse(localStorage.getItem('userId'))}`).then((response)=>{
+    axios.get(`${baseUrl2}/users/CustomerDetail/${JSON.parse(localStorage.getItem('userId'))}`).then((response)=>{
     if(response.status=200){
        console.log(response.data);
        setFirstName(response.data.FirstName);
@@ -90,8 +90,10 @@ useEffect(()=>{
      },
      AlterMobileNo
    }
-
-   await axios.post(`http://${baseUrl2}:3000/users/update/${JSON.parse(localStorage.getItem('userId'))}`,data).then((response)=>{
+   if(MobileNo.length!==10 && AlterMobileNo.length!==10){
+     toast.info("Mobile Number must be 10 digits",{position: toast.POSITION.BOTTOM_CENTER})
+   }else{
+   await axios.post(`${baseUrl2}/users/update/${JSON.parse(localStorage.getItem('userId'))}`,data).then((response)=>{
         // toast(response.data.msg)
         if(!response){
           setLoading(true);
@@ -104,6 +106,7 @@ useEffect(()=>{
             toast.success(response.data.msg,{position: toast.POSITION.BOTTOM_CENTER})
         }
    }).catch((err)=>console.log(err))
+  }
  }
 //  const handleValidate = (MobileNo) => {
 //    const isValid = isValidPhoneNumber(MobileNo);

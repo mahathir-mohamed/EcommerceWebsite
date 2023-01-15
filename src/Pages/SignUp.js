@@ -10,11 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import {baseUrl1,baseUrl2} from '../Api/ApiRoutes';
 
 import { toast,ToastContainer } from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 // toast.configure()
 export default function SignUp() {
   
   // const [value, setValue] = useState();
+  const navigate = useNavigate();
   const {handleSubmit,formState:{errors},control} = useForm();
 
   const [Validate,setValidate] = useState(true);
@@ -53,6 +55,7 @@ useEffect(()=>{
      Password,
      ConfirmPassword,
      MobileNo,
+     AlterMobileNo,
      Address:{
         District,
         State,
@@ -64,14 +67,30 @@ useEffect(()=>{
         StreetName,
      }
    }
-   await axios.post(`http://${baseUrl2}:3000/users/NewCustomer`,data).then((response)=>{
-        // toast(response.data.msg)
+   if(MobileNo.length!==10 && AlterMobileNo.length!==10){
+       toast.info("Mobile Number Must Be 10 Digits",{position: toast.POSITION.BOTTOM_CENTER})
+   }else{
+     if(Password!==ConfirmPassword){
+       toast.info("Password and confirm password must be same",{position: toast.POSITION.BOTTOM_CENTER})
+     }else{
+       if(Password.length<=4){
+         toast.info("Password Must be at least 5 characters",{position: toast.POSITION.BOTTOM_CENTER})
+       }else{
+           await axios.post(`${baseUrl2}/users/NewCustomer`,data).then((response)=>{
         if(response.status==202){
             toast.info(response.data.msg,{position: toast.POSITION.BOTTOM_CENTER})
         }else{
-            toast.success(response.data.msg,{position: toast.POSITION.BOTTOM_CENTER})
+            toast.success(response.data.msg,{position: toast.POSITION.BOTTOM_CENTER});
+            setTimeout(() => {
+              navigate('/')  
+            }, 200);
+            
         }
    }).catch((err)=>console.log(err))
+       }
+     }
+   }
+   
  }
  const handleValidate = (MobileNo) => {
    const isValid = isValidPhoneNumber(MobileNo);

@@ -5,6 +5,8 @@ import { CookiesProvider } from 'react-cookie';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {Store} from './redux/store';
 
 
 
@@ -13,7 +15,9 @@ root.render(
   
   <React.StrictMode>
     <CookiesProvider>
-    <App />
+    <Provider store={Store}>
+        <App />
+    </Provider>
      </CookiesProvider>
   </React.StrictMode>
 );
