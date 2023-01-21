@@ -1,9 +1,9 @@
 import React,{useEffect,useState} from 'react';
-import Button from 'react-bootstrap/button';
+import Button from 'react-bootstrap/Button';
 import {useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import AdminHeader from '../AdminPages/AdminHeader';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import {baseUrl2} from '../Api/ApiRoutes';
 import { AiFillDelete,AiTwotoneEdit } from "react-icons/ai";

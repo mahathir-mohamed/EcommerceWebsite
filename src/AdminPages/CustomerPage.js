@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import AdminHeader from './AdminHeader';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import {baseUrl2} from '../Api/ApiRoutes';
 

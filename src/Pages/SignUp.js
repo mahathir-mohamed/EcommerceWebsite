@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 // import PhoneInput from 'react-phone-number-input';
-import { useForm, Controller } from "react-hook-form";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
-import 'react-phone-number-input/style.css';
+// import { useForm, Controller } from "react-hook-form";
+// import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+// import 'react-phone-number-input/style.css';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -92,11 +92,11 @@ useEffect(()=>{
    }
    
  }
- const handleValidate = (MobileNo) => {
-   const isValid = isValidPhoneNumber(MobileNo);
-   console.log({ isValid })
-   return isValid
- }
+//  const handleValidate = (MobileNo) => {
+//    const isValid = isValidPhoneNumber(MobileNo);
+//    console.log({ isValid })
+//    return isValid
+//  }
   return (
     <Container>
        <div className="SignupDiv my-2" style={{width:"100%",backgroundColor:"#cccccc",borderRadius:10}}>

@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { Navigate,useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 import { toast,ToastContainer } from 'react-toastify';
 import {baseUrl1,baseUrl2} from '../Api/ApiRoutes';
 import {useSelector,useDispatch} from 'react-redux';

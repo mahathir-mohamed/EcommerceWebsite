@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 // import PhoneInput from 'react-phone-number-input';
 import { useForm, Controller } from "react-hook-form";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
-import 'react-phone-number-input/style.css';
+// import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+// import 'react-phone-number-input/style.css';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,7 +15,7 @@ import { toast,ToastContainer } from 'react-toastify';
 export default function EditSignUp() {
   
   // const [value, setValue] = useState();
-  const {handleSubmit,formState:{errors},control} = useForm();
+  // const {handleSubmit,formState:{errors},control} = useForm();
 
   const [Validate,setValidate] = useState(true);
   const [User,setUser]=useState();

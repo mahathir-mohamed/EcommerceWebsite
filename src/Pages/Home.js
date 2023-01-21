@@ -3,7 +3,7 @@ import Banner from '../Helpers/Slider';
 import ProductSlider from '../Helpers/ProductSlider';
 import BannerSlider from '../Helpers/BannerSlider';
 import Greeting from '../Helpers/Greeting';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import {baseUrl1,baseUrl2} from '../Api/ApiRoutes';
 // import {useSelector} from 'react-redux';
