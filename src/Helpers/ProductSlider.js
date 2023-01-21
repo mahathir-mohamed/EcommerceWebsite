@@ -7,6 +7,7 @@ import "swiper/css/free-mode";
 import ProductCard from './ProductCard';
 import Container from 'react-bootstrap/Container';
 import {useNavigate} from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 
@@ -39,8 +40,7 @@ export default function ProductSlider(props) {
                 <ProductCard title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} id={data._id} />
             </SwiperSlide>
             ))}
-        </Swiper></div>:null}
-        
+        </Swiper></div>:<Spinner animation="border" size="lg"/>}
         </div>
   )
 }

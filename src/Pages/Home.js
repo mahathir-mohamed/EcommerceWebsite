@@ -18,6 +18,13 @@ export default function Home() {
    const [IndoorDecorations,setIndoorDecoration]=useState([]);
    const [Banner,setBanner]=useState([]);
    const [image,setimage]=useState([]);
+
+   const [data,setdata]=useState([
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536347/Images/xsnpxa4nsuqxo0j5umxe.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536178/Images/do0izpdy216j1szs23mc.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"}, 
+  ]);
   useEffect(()=>{
     // console.log(MobileNo);
     axios.get(`${baseUrl2}/Products/AllProducts`).then((res)=>{
@@ -44,22 +51,17 @@ export default function Home() {
   useEffect(()=>{
       ProductSeperator()
   },[Products])
-  const data = [
-    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536347/Images/xsnpxa4nsuqxo0j5umxe.jpg"},
-    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"},
-    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536178/Images/do0izpdy216j1szs23mc.jpg"},
-    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"}, 
-  ]
+  // const data = 
 
   
- function IterateImages(){
-      for(let i=0;i<Banner.length;i++){
-        setimage(old => [...old,Banner[i].Image[0]]);
-        // console.log(image);
-    }
+//  function IterateImages(){
+//       for(let i=0;i<Banner.length;i++){
+//         setimage(old => [...old,Banner[i].Image[0]]);
+//         // console.log(image);
+//     }
     
     // return image
- }
+//  }
  function ProductSeperator(){
    var Accesories = Products.filter(function(data){
     return data.Category == "Baby Accessories";
@@ -83,13 +85,15 @@ export default function Home() {
    setGiftProducts(Gift);
  }
   return (
+    
     <div>
          {/* <Greeting/> */}
          
-         {/* <Banner data={data[0].url}/> */}
+        
         
          {/* <BannerSlider/> */}
          <Container>
+           {/* <Banner/> */}
         <div style={{backgroundColor:'#d9d9d9'}}>
         <ProductSlider title="Baby Accessories" Products={BabyAccessory}/>
         <ProductSlider title="Gift Products" Products={GiftProducts}/>

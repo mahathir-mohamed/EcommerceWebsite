@@ -46,10 +46,10 @@ export default function Login() {
               window.location.reload(false); 
             }, 200);
             localStorage.setItem('userId',JSON.stringify(response.data.userId))
-            setCookie('Token', response.data.Token, { path: '/' });
+            setCookie('Token', response.data.Token, { path: '/'});
             // navigate('/',{ replace: true });
         }
-    }).catch((err)=>console.log(err))
+    }).catch((err)=>{toast.info("Please Check Internet Connection",{position: toast.POSITION.BOTTOM_CENTER})})
   }
   return (
     <Container className="col-lg-5">

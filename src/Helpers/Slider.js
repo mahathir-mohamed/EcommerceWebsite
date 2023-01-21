@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,6 +6,15 @@ import Container from 'react-bootstrap/container';
 import Image from 'react-bootstrap/Image';
 
 export default function Banner(props) {
+    const [data,setdata]=useState([
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536347/Images/xsnpxa4nsuqxo0j5umxe.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536178/Images/do0izpdy216j1szs23mc.jpg"},
+    {"url":"https://res.cloudinary.com/doiff4svr/image/upload/v1673536320/Images/lwsip9ouq8ksmr50kyyh.jpg"}, 
+  ]);
+  // useEffect(()=>{
+  //  console.log(props.data)
+  // },[])
   const {innerWidth:width,innerHeight:height}=window;
   var settings = {
     dots: true,
