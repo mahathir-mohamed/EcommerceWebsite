@@ -74,7 +74,7 @@ useEffect(()=>{
        toast.info("Password and confirm password must be same",{position: toast.POSITION.BOTTOM_CENTER})
      }else{
        if(Password.length<=4){
-         toast.info("Password Must be at least 5 characters",{position: toast.POSITION.BOTTOM_CENTER})
+         toast.info("Password Must be at least 5 character",{position: toast.POSITION.BOTTOM_CENTER})
        }else{
            await axios.post(`${baseUrl2}/users/NewCustomer`,data).then((response)=>{
         if(response.status==202){
