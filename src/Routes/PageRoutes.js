@@ -16,7 +16,7 @@ export default function PageRoutes() {
             <Route exact path="/" element={<Home/>}/>
             <Route path="/SignUp" element={<SignUp/>}/>
             <Route path="/Login" element={<Login/>} />
-            <Route path="/AllProducts" element={<AllProducts/>} />
+            <Route path="/AllProducts/:Category" element={<AllProducts/>} />
             <Route path="/SingleProduct/:id" element={<SingleProduct/>}/>
             <Route path="/UpdateCustomer" element={<EditSignUp/>}/>
             {/* <Route path="/Header" element={<Header/>}/> */}

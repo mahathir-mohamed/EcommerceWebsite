@@ -20,11 +20,25 @@ function App() {
   const [Loading,setLoading] = useState(false);
   const [Admin,setAdmin]=useState(false);
   // let navigate = useNavigate();
-  
-  useEffect(()=>{
-   var token = cookies.Token;
-    if(token){
-      axios.post(`${baseUrl2}/users/AuthCheck`,{Token:token}).then((res)=>{
+   
+  function AdminToken(Authtoken){
+      axios.post(`${baseUrl2}/users/AdminCheck`,{AuthToken:Authtoken}).then((res)=>{
+        if(!res){
+          setLoading(true);
+        }
+        if(res.data.AuthToken){
+          setCookie('AuthToken',res.data.AuthToken, { path: '/' });
+          console.log(res.data);
+          setAdmin(true);
+        }else{
+           removeCookie('AuthToken');
+           setAdmin(false);
+        }
+      }).catch((err)=>{console.log(err)})
+      // console.log(token);
+  }
+  function TokenVerify(token){
+     axios.post(`${baseUrl2}/users/AuthCheck`,{Token:token}).then((res)=>{
         if(!res){
           setLoading(true);
         }
@@ -38,17 +52,33 @@ function App() {
         }
       }).catch((err)=>{console.log(err)})
       console.log(token);
-      }else{
+  }
+
+  useEffect(()=>{
+    var Authtoken = cookies.AuthToken;
+    var token = cookies.Token;
+    if(Authtoken){
+       AdminToken(Authtoken)
+    }else{
+      console.log("Failed to LoggedIn");
+       removeCookie('AuthToken');
+      setAdmin(false);
+    }
+    if(token){
+       TokenVerify(token)
+    }else{
       console.log("Failed to LoggedIn");
        removeCookie('Token');
       setloggedIn(false);
     }}
   ,[])
-   if(loggedIn && !cookies.Auth){
+
+
+   if(loggedIn && !Admin){
     return Loading?<Spinner animation="border" size="lg"/>:<RootPage/>
-  }else if(!loggedIn && !cookies.Auth){
+  }else if(!loggedIn && !Admin){
      return Loading?<Spinner animation="border" size="lg"/>:<AuthRoute/>
-  }else if(!loggedIn && cookies.Auth){
+  }else if(!loggedIn && Admin){
     return Loading?<Spinner animation="border" size="lg"/>:<AdminRoutes/>
   }else{
     return Loading?<Spinner animation="border" size="lg"/>:<AuthRoute/>

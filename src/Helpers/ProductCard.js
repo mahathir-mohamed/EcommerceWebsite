@@ -19,7 +19,7 @@ export default function ProductCard(props) {
             <AiFillTag color="black" size={15}/>
             {props.price}₹
            </div>
-           {props.offer?<div className="offer"><p style={{fontSize:11,color:"white",alignSelf:"center"}}>{props.offer}%off</p></div>:null}
+           {props.offer?<div className="offer"><p style={{fontSize:11,color:"white",alignSelf:"center"}}>{props.offer}% off</p></div>:null}
              
         </Card.Title>
         </div>

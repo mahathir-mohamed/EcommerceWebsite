@@ -8,10 +8,10 @@ import {useNavigate} from 'react-router-dom';
 
 
 export default function AdminHeader() {
-  const [cookies,setCookie,removeCookie] = useCookies(['Token']);
+  const [cookies,setCookie,removeCookie] = useCookies(['AuthToken']);
   // const navigate = useNavigate();
   function LogOut(){
-     removeCookie('Auth');
+     removeCookie('AuthToken');
      window.location.reload(false)
     //  navigate('/',{replace:true})
   }
@@ -22,7 +22,7 @@ export default function AdminHeader() {
       <div>
         <Navbar.Brand href="/" className="d-flex justify-content-between px-3">
              {/* <img style={height<=800?Mobile.logoSize:Desk.logoSize} src={process.env.PUBLIC_URL + '/logo.jpeg'} />  */}
-             <p style={height<=800?Mobile.logoSize:Desk.logoSize}>Store Dashboard</p>
+             <p style={height <= 800?Mobile.logoSize:Desk.logoSize}>Store Dashboard</p>
         </Navbar.Brand>
       </div>
       <div> 
@@ -30,6 +30,7 @@ export default function AdminHeader() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto px-sm-5">
             <Nav.Link href="/">Products</Nav.Link>
+            <Nav.Link href="/Banners">Banners</Nav.Link>
             {/* <Nav.Link href="/SignUp">SignUp</Nav.Link> */}
             <Nav.Link href="/CustomerList">Customers</Nav.Link>
             <Nav.Link href="/OrderList">Orders</Nav.Link>
@@ -37,7 +38,6 @@ export default function AdminHeader() {
           </Nav>
         </Navbar.Collapse>
       </div>
-     
     </Navbar>
      </Container>
   )

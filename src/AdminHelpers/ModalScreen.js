@@ -83,6 +83,7 @@ export function ModalScreen(props) {
     }).catch((e)=>console.log(e))
   }
   const AddProduct = async()=>{
+    console.log(formData);
      await axios.post(`${baseUrl2}/Products/AddProduct`,formData).then((res)=>{
       console.log(res);
       if(res.data.status==200){

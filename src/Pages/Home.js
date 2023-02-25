@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from 'react';
-import Banner from '../Helpers/Slider';
+import {Banner} from '../Helpers/Slider';
 import ProductSlider from '../Helpers/ProductSlider';
-import BannerSlider from '../Helpers/BannerSlider';
+// import BannerSlider from '../Helpers/BannerSlider';
 import Greeting from '../Helpers/Greeting';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import {baseUrl1,baseUrl2} from '../Api/ApiRoutes';
+import HomeBanner from '../Helpers/HomeBanner';
 // import {useSelector} from 'react-redux';
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
       // console.log(Products)
     }).catch((e)=>console.log(e));
 
-    axios.get(`${baseUrl2}/Products/AllBanner`).then((res)=>{setBanner(res.data)}).catch((e)=>console.log(e));
+    // axios.get(`${baseUrl2}/Products/AllBanner`).then((res)=>{setBanner(res.data[0].Image);console.log(res.data[0].Image)}).catch((e)=>console.log(e));
 
     // console.log(Banner)
     // let newImage=[];
@@ -78,7 +79,7 @@ export default function Home() {
     var babyToys = Products.filter(function(data){
     return data.Category == "Baby Toys";
    })
-   setSoftToys(babyToys);
+   setBabyToys(babyToys);
     var Gift = Products.filter(function(data){
     return data.Category == "Gift Products";
    })
@@ -89,11 +90,12 @@ export default function Home() {
     <div>
          {/* <Greeting/> */}
          
-        
+        <HomeBanner/>
         
          {/* <BannerSlider/> */}
+         {/* <Banner data={data[0].url}/> */}
          <Container>
-           {/* <Banner/> */}
+           
         <div style={{backgroundColor:'#d9d9d9'}}>
         <ProductSlider title="Baby Accessories" Products={BabyAccessory}/>
         <ProductSlider title="Gift Products" Products={GiftProducts}/>

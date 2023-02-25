@@ -14,6 +14,7 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function ProductSlider(props) {
   useEffect(()=>{
    setProduct(props.Products);
+
   //  setCat(Product[0].Category);
   //  console.log(Cat)  
   },[])
@@ -28,7 +29,7 @@ export default function ProductSlider(props) {
         <div>
         <Container className="d-flex justify-content-between">
             <div><h1 style={width<=600?mobileEdition.TitleBar:DeskEdition.TitleBar}>{props.title}</h1></div>
-            <div><a href="/AllProducts" style={{textDecoration:"none"}}>See More</a>
+            <div><a href={`/AllProducts/${props.title}`} style={{textDecoration:"none"}}>See More</a>
             </div>
         </Container>
         <Swiper freeMode={true} grabCursor={true} spaceBetween={30} modules={[FreeMode]} className="mySwiper" slidesPerView={5} onSlideChange={()=>{console.log(Index)}}

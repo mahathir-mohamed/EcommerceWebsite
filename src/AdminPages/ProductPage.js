@@ -48,6 +48,7 @@ export default function ProductPage() {
          <div>
             <table style={{width:"100%"}}>
                <tr  className="bg-primary">
+                 <th className="p-2 text-light">Image</th>
                  <th className="p-2 text-light">Product Name</th>
                  <th  className="p-2 text-light">Price</th>
                  <th  className="p-2 text-light">Offer</th>
@@ -60,7 +61,8 @@ export default function ProductPage() {
                {Product.map((item,index)=>{
                  return (
                   <tbody key={index}>
-                   <tr className="bg-light" >
+                   <tr className="bg-light" style={{borderWidth:2}}>
+                     <td className="p-2"><img src={`${item.Image[0].url}`} style={{height:50,width:100}}/></td>
                      <td className="p-2">{item.Title}</td>
                      <td className="p-2">₹{item.Price}</td>
                      <td className="p-2">{item.Offer?`${item.Offer}%`:"Nill"}</td>

@@ -14,7 +14,7 @@ export default function Login() {
   const navigate = useNavigate();
   // const {MobileNo,Password} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
-  const [cookies, setCookie] = useCookies(['Token','Auth']);
+  const [cookies, setCookie,removeCookie] = useCookies(['Token','AuthToken']);
   const [MobileNo,setMobileNo]=useState();
   const [Password,setPassword]=useState();
   const [Disabled,setDisabled]=useState(true);
@@ -46,7 +46,15 @@ export default function Login() {
               window.location.reload(false); 
             }, 200);
             localStorage.setItem('userId',JSON.stringify(response.data.userId))
-            setCookie('Token', response.data.Token, { path: '/'});
+            console.log(response.data);
+            if(response.data.AuthToken){
+              setCookie('AuthToken', response.data.AuthToken, { path: '/'});
+              removeCookie('Token');
+            }else{
+              setCookie('Token', response.data.Token, { path: '/'});
+              removeCookie('AuthToken');
+            }
+            
             // navigate('/',{ replace: true });
         }
     }).catch((err)=>{toast.info("Please Check Internet Connection",{position: toast.POSITION.BOTTOM_CENTER})})

@@ -21,7 +21,7 @@ export default function SingleProduct() {
       (response)=>{
         setProduct(response.data);
         setdata(response.data.Image);
-        console.log(response.data.Image);
+        console.log(response.data);
       }).catch((err)=>console.log(err));
   },[])
   
