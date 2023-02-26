@@ -3,8 +3,19 @@ import {Card,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout'
 import { AiFillStar,AiFillTag,AiOutlineShoppingCart } from "react-icons/ai";
+import axios from 'axios';
+import {baseUrl2} from '../Api/ApiRoutes';
 
 export default function ProductCard(props) {
+
+  const payNow = async token =>{
+     await axios.post(`${baseUrl2}/Order/CreateOrder`,{
+        price:props.price,
+        name:props.title,
+        quantity:props.quantity,
+        token
+     }).then((res)=>console.log(res)).catch((err)=>console.log(err));
+  }
   const [CartItem,setCardItem]=useState(0);
   return (
     
@@ -34,20 +45,17 @@ export default function ProductCard(props) {
       </Card.Body>
       </Link>
       <div className="d-flex justify-content-around align-items-center">
-        {/* <Button className="w-80 rounded-0" variant="primary">Buy Now</Button> */}
            <StripeCheckout
         stripeKey="pk_test_51MfGwoSAev60aCZFmafcUUDaeRkWE6XJ5Wd94PSCwEJVpeSBDdGxePGLjhcscrVm31ZlemEcYUvipdtgKgi3ViDO00k2Hb7Dog"
-        // label="Buy Now"
         name="Pay With Card"
-        // country="in"
         currency="inr"
         // billingAddress
-        // shippingAdress
+        // shippingAddress
         country="in"
         amount={props.OfferPrice*100}
         description={`your total amount is ₹${props.OfferPrice?props.OfferPrice:props.Price}`}
-        style={{width:"70%",marginBottom:10}}
-          >
+        token={payNow}
+        style={{width:"70%",marginBottom:10}}>
             <Button className="w-80 rounded-0" variant="primary">Buy Now</Button>
           </StripeCheckout>
         <AiOutlineShoppingCart onClick={()=>{alert("Total Items:" + CartItem);setCardItem(CartItem+1);}} className="w-80 rounded-0" variant="primary" color="orange" size={25}/>

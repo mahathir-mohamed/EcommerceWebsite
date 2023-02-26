@@ -38,7 +38,7 @@ export default function ProductSlider(props) {
         >
             {props.Products.slice(0,5).map((data,index)=>(
             <SwiperSlide key={index} style={{height:250,width:280}}>
-                <ProductCard title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} id={data._id} />
+                <ProductCard quantity={props.stock} title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} id={data._id} />
             </SwiperSlide>
             ))}
         </Swiper></div>:<Spinner animation="border" size="lg"/>}
