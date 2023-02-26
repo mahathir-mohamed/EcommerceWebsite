@@ -29,8 +29,10 @@ export default function Login() {
   
   const AdminCheck = ()=>{
      if(MobileNo == "7092017605" && Password=="pass123")
-     {setCookie("Auth",true);
-     window.location.reload(false)}
+     {
+      setCookie("Auth",true);
+      window.location.reload(false)
+    }
      else{
       CheckLogin();
     }
@@ -74,7 +76,7 @@ export default function Login() {
              </div>
           </div>
           <div>
-             <input type="button" class="col-11 mx-3 btn btn-primary" value="Login" disabled={Disabled} onClick={AdminCheck}/>
+             <input type="button" class="col-11 mx-3 btn btn-primary" value="Login" disabled={Disabled} onClick={CheckLogin}/>
           </div>
           <div className="mx-3 my-1">
              <p>New Customer? <span><a href="/SignUp" style={{textDecoration:'none'}} className="text-primary" >Register</a></span></p>
