@@ -15,17 +15,28 @@ export default function ProductPage() {
 
   const [Edit,setEdit]=useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    refresh();
+  }
   const handleShow = () => setShow(true);
   const [Product,setProduct]=useState([]); 
   const [cookies,setCookie,removeCookie] = useCookies(['Token','Auth']);
   const [productId,setProductId] = useState();
   useEffect(()=>{
-     axios.get(`${baseUrl2}/Products/AllProducts`).then((res)=>{
+     getAllProduct();
+  },[])
+
+  const getAllProduct = async ()=>{
+    await axios.get(`${baseUrl2}/Products/AllProducts`).then((res)=>{
        console.log(res.data);
        setProduct(res.data);
      }).catch((err)=>{console.log(err)})
-  },[])
+  }
+
+  const refresh = ()=>{
+    window.location.reload();
+  }
 
   const EditProduct = async(id)=>{
         handleShow()
@@ -33,7 +44,17 @@ export default function ProductPage() {
         setProductId(id);
   }
    const DeleteProduct = async(id)=>{
-      await axios.get(`${baseUrl2}/Products/DeleteProduct/${id}`).then((res)=>{console.log(res)}).catch((err)=>{console.log(err)})
+      await axios.get(`${baseUrl2}/Products/DeleteProduct/${id}`).then((res)=>{
+        console.log(res.data)
+        if(res.data.status==200){
+           toast.success(res.data.msg,{position:toast.POSITION.BOTTOM_CENTER})
+          //  refresh();
+          getAllProduct()
+        }else{
+          toast.info(res.data.msg,{position:toast.POSITION.BOTTOM_CENTER});
+     
+        }
+      }).catch((err)=>{toast.info(err,{position:toast.POSITION.BOTTOM_CENTER})})
   }
 
   const navigate = useNavigate();

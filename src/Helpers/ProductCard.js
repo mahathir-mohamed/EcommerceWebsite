@@ -28,9 +28,26 @@ export default function ProductCard(props) {
         <div className="d-flex flex-column justify-content-between">
         <Card.Title className="text-truncate"  style={{fontSize:15,color:"black"}} >{props.title}</Card.Title>
         <Card.Title className="d-flex justify-content-between"  style={{fontSize:15,color:"green"}}>
+          <div>
+          {props.offer?
+          <div className=" align-items-center">
+            {props.offer?null:
+            <AiFillTag color="grey" size={15}/>}
+            <p style={{color:"grey",textDecoration:"line-through"}}>
+            {props.price}₹
+            </p>
+           </div>:  
+           <div className="d-flex align-items-center">
+            <AiFillTag size={15}/>
+            <p>
+            {props.price}₹
+            </p>
+           </div>}
+           {props.offer?
            <div className="d-flex  align-items-center">
             <AiFillTag color="black" size={15}/>
-            {props.price}₹
+            {props.OfferPrice}₹
+            </div>:null}
            </div>
            {props.offer?<div className="offer"><p style={{fontSize:11,color:"white",alignSelf:"center"}}>{props.offer}% off</p></div>:null}
              
@@ -53,7 +70,7 @@ export default function ProductCard(props) {
         // shippingAddress
         country="in"
         amount={props.OfferPrice*100}
-        description={`your total amount is ₹${props.OfferPrice?props.OfferPrice:props.Price}`}
+        description={`your total amount is ₹${props.OfferPrice?props.OfferPrice:props.price}`}
         token={payNow}
         style={{width:"70%",marginBottom:10}}>
             <Button className="w-80 rounded-0" variant="primary">Buy Now</Button>

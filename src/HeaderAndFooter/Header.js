@@ -30,6 +30,8 @@ export default function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto px-sm-5">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/">Orders</Nav.Link>
+            <Nav.Link href="/">Cart</Nav.Link>
             {/* <Nav.Link href="/SignUp">SignUp</Nav.Link> */}
             <Nav.Link href="/UpdateCustomer">Edit user</Nav.Link>
             <Nav.Link onClick={()=>{LogOut()}} className="btn btn-danger p-2 text-light">Logout</Nav.Link>

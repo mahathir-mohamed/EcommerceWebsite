@@ -61,8 +61,24 @@ export default function Login() {
         }
     }).catch((err)=>{toast.info("Please Check Internet Connection",{position: toast.POSITION.BOTTOM_CENTER})})
   }
+  const {innerHeight:height,innerWidth:width} = window
+  const Mobile={
+    logoSize:{
+        heigth:"100px",
+        width:"250px"
+    }
+}
+const Desk = {
+    logoSize:{
+        height:"120px",
+        width:"340px"
+    }
+}
   return (
     <Container className="col-lg-5">
+      <div className={width<=600?"MobileloginLogo":"DeskloginLogo"}>
+        <img style={width<=800?Mobile.logoSize:Desk.logoSize} src={process.env.PUBLIC_URL + '/logo.jpeg'} /> 
+      </div>
        <div className="my-5 p-3 p-lg-2" style={{width:"100%",backgroundColor:"#cccccc",borderRadius:10}}>
          <div className="d-flex justify-content-center my-2">
             <h4>Login</h4>

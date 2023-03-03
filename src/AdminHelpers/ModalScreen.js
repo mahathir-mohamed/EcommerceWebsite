@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, {changeEvent,useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +7,7 @@ import {baseUrl2} from '../Api/ApiRoutes';
 import { toast,ToastContainer } from 'react-toastify';
 
 export function ModalScreen(props) {
-  const [Title,setTitle]=useState("");
+  const [Title,setTitle]=useState();
   const [Price,setPrice]=useState();
   const [Offer,setOffer]=useState();
   const [Type,setType]=useState();
@@ -15,13 +15,13 @@ export function ModalScreen(props) {
   const [Category,setCategory]=useState();
   const [Stock,setStock]=useState();
   const [Description,setDescription]=useState();
-  const[image,setimage]=useState([]);
+  const[image,setimage] = useState();
 
   useEffect(()=>{
     if(props.Edit==true && props.productId){
         axios.get(`${baseUrl2}/Products/ProductDetails/${props.productId}`).then((res)=>{
       console.log(res.data);
-       setTitle(res.data.Title);
+      setTitle(res.data.Title);
       setPrice(res.data.Price);
       setOffer(res.data.Offer);
       setMaterial(res.data.Material);
@@ -31,7 +31,7 @@ export function ModalScreen(props) {
       setType(res.data.Type);
     }).catch((e)=>console.log(e))
   }else{
-     EmptyState()
+     EmptyState();
   }},[props.productId,props.Edit])
 
   const EmptyState=()=>{
@@ -43,13 +43,21 @@ export function ModalScreen(props) {
       setDescription("");
       setType("");
       setStock("");
+      setimage("");
   }
-
+ 
+  const refresh = ()=>{
+    window.location.reload();
+  }
   const ButtonFunction = ()=>{
      if(props.Edit==true){
        EditProduct();
+      //  refresh();
+      EmptyState();
      }else{
        AddProduct();
+      //  refresh();
+      EmptyState();
      }
   }
   const formData = new FormData();
@@ -64,7 +72,8 @@ export function ModalScreen(props) {
     formData.append('Description', Description);
   },[Title,Price,Offer,Type,Stock,Material,Category,Description])
   
-   
+ 
+
   const EditProduct = async()=>{
     // console.log(formData) 
     const data={
@@ -88,15 +97,21 @@ export function ModalScreen(props) {
       console.log(res);
       if(res.data.status==200){
         toast.success(res.data.msg,{position: toast.POSITION.BOTTOM_CENTER});
-        // console.log("hi")
+        console.log("hi");
+      }else{
+        toast.info(res.data.msg,{position:toast.POSITION.BOTTOM_CENTER});
       }
-    }).catch((e)=>console.log(e))
+    }).catch((e)=>{
+      toast.info(e,{position:toast.POSITION.BOTTOM_CENTER})
+    })
   }
 
-  const FileHandling = (e)=>{
+  const FileHandling = (e:changeEvent<HTMLInputElement>)=>{
+    if(e.target.files){
      for(let i=0;i<e.target.files.length;i++){
         formData.append('image',e.target.files[i]);
      }
+  }
   }
 
  
@@ -123,9 +138,10 @@ export function ModalScreen(props) {
                   <div className="d-flex justify-content-around my-2">
                    <label for="Category">Select Category :</label>
                 <select  name="Category" value={Category} onChange={(e)=>setCategory(e.target.value)} id="Category">
+                    <option value="select">Select Category </option>
                     <option value="Indoor Decoration">Indoor Decoration</option>
                     <option value="Baby Accessories">Baby Accessories</option>
-                    <option selected value="Soft Toys">Soft Toys</option>
+                    <option value="Soft Toys">Soft Toys</option>
                     <option value="Baby Toys">Baby Toys</option>
                     <option value="Gift Products">Gift Products</option>
                  </select>
@@ -148,6 +164,7 @@ export function ModalScreen(props) {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer/>
     </Container>
   );
 }
