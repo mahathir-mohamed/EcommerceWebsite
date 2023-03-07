@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useCookies } from 'react-cookie';
 import {useNavigate} from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 
 
 export default function Header() {
@@ -31,9 +32,14 @@ export default function Header() {
           <Nav className="me-auto px-sm-5">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/">Orders</Nav.Link>
-            <Nav.Link href="/">Cart</Nav.Link>
-            {/* <Nav.Link href="/SignUp">SignUp</Nav.Link> */}
             <Nav.Link href="/UpdateCustomer">Edit user</Nav.Link>
+            <Nav.Link href="/CartItems">
+              <div className="d-flex align-items-center justify-content-evenly" style={{height:30}}>
+                <FaShoppingCart color="grey"/>
+                Cart
+              </div>  
+              </Nav.Link>
+            {/* <Nav.Link href="/SignUp">SignUp</Nav.Link> */}
             <Nav.Link onClick={()=>{LogOut()}} className="btn btn-danger p-2 text-light">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>

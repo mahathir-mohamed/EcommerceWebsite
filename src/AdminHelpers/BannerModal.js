@@ -51,16 +51,11 @@ export default function BannerModal(props) {
   }
     
 
-  const FileHandling = (e)=>{
-  //   if(e.target.files[0]){
-  //    for(let i=0;i<e.target.files.length;i++){
-  //       formData.append('image',e.target.files[i]);
-  //       console.log(e.target.files[i]);
-  //    }
-     
-  // }
-  // image.push(e.target.files[0]);
-    formData.append('image',e.target.files[0]);
+  const FileHandling = (e:changeEvent<HTMLInputElement>)=>{
+     for(let i=0;i<e.target.files.length;i++){
+        formData.append('image',e.target.files[i]);
+        console.log(e.target.files[i]);
+     }
   
   }
   return (

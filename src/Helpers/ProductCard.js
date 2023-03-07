@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Card,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout'
@@ -7,6 +7,61 @@ import axios from 'axios';
 import {baseUrl2} from '../Api/ApiRoutes';
 
 export default function ProductCard(props) {
+ 
+  // const userId = JSON.parse(localStorage.getItem('userId'));
+  const [AddCart,setAddCart]=useState();
+  const [Products,setProducts]=useState([]);
+  // const Products = new Array()
+
+  const CreateCart = async (id)=>{
+    const data = {
+      userId : props.userId,
+      Products:[
+        {ProductId:id}
+      ]
+    }
+    await axios.post(`${baseUrl2}/Cart/CreateCart`,data).then((res)=>{
+       console.log(res.data.msg);
+        fetchingStorage(res.data.Products);
+        // setProducts(res.data.Products);
+    }).catch((err)=>console.log(err))
+  }
+
+  const UpdateCart = async (id)=>{
+    setProducts(JSON.parse(localStorage.getItem("Products")))
+    // setProducts(oldProducts => [...oldProducts,{ProductId:props.id}])
+    // Products.push({ProductId:props.id})
+    // console.log(typeof(Products));
+    console.log(Products);
+     const data = {
+      userId : props.userId,
+      Products:Products
+    }
+   await axios.post(`${baseUrl2}/Cart/UpdateCart`,data).then((res)=>{
+    console.log(res.data);
+  }).catch((err)=>{console.log(err)})
+  }
+
+  const fetchingStorage = (data)=>{
+     localStorage.setItem('Products',JSON.stringify(data));
+  }
+  const CartAdding = async (id)=>{
+    await axios.get(`${baseUrl2}/Cart/CheckCart/${props.userId}`
+    ).then((res)=>{
+      var data = res.data.Products;
+       if(data){
+        console.log("hi")
+        fetchingStorage(res.data.Products);
+       }
+      if(res.data.msg=="Cart not Found"){
+        CreateCart(props.id);
+        
+      }else if(res.data.msg="Cart found"){
+        UpdateCart(props.id);
+      }
+    }).catch((err)=>console.log(err));
+
+  }
 
   const payNow = async token =>{
      await axios.post(`${baseUrl2}/Order/CreateOrder`,{
@@ -65,7 +120,7 @@ export default function ProductCard(props) {
            <StripeCheckout
         stripeKey="pk_test_51MfGwoSAev60aCZFmafcUUDaeRkWE6XJ5Wd94PSCwEJVpeSBDdGxePGLjhcscrVm31ZlemEcYUvipdtgKgi3ViDO00k2Hb7Dog"
         name="Pay With Card"
-        currency="inr"
+        currency="INR"
         // billingAddress
         // shippingAddress
         country="in"
@@ -75,7 +130,7 @@ export default function ProductCard(props) {
         style={{width:"70%",marginBottom:10}}>
             <Button className="w-80 rounded-0" variant="primary">Buy Now</Button>
           </StripeCheckout>
-        <AiOutlineShoppingCart onClick={()=>{alert("Total Items:" + CartItem);setCardItem(CartItem+1);}} className="w-80 rounded-0" variant="primary" color="orange" size={25}/>
+        <AiOutlineShoppingCart onClick={()=>{CartAdding(props.id)}} className="w-80 rounded-0" variant="primary" color="orange" size={25}/>
       </div>
       {/* <div>
         <StripeCheckout

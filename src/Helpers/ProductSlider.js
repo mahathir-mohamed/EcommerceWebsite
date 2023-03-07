@@ -14,7 +14,7 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function ProductSlider(props) {
   useEffect(()=>{
    setProduct(props.Products);
-
+   setUserId(JSON.parse(localStorage.getItem('userId')));
   //  setCat(Product[0].Category);
   //  console.log(Cat)  
   },[])
@@ -23,6 +23,7 @@ export default function ProductSlider(props) {
     const navigate = useNavigate();
     const {innerWidth:width,innerHeight:height}=window;
     const [Index,setIndex]=useState(0);
+    const [userId,setUserId]=useState();
   return (
        <div className="container py-4 px-2 justify-content-center">
         {props.Products?
@@ -38,7 +39,7 @@ export default function ProductSlider(props) {
         >
             {props.Products.slice(0,5).map((data,index)=>(
             <SwiperSlide key={index} style={{height:250,width:280}}>
-                <ProductCard quantity={props.stock} title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} id={data._id} />
+                <ProductCard quantity={props.stock} title={data.Title} price={data.Price} offer={data.Offer} OfferPrice={data.OfferPrice} img={data.Image[0].url} userId={userId} id={data._id} />
             </SwiperSlide>
             ))}
         </Swiper></div>:<Spinner animation="border" size="lg"/>}
